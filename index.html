@@ -3,53 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buirlake</title>
+    <title>Buir Lake Laboratories | Bridging Light and Life</title>
+    <meta name="description" content="A Hong Kong-based research initiative dedicated to advancing ultrafast optics, biophotonics, and open science.">
+    <link rel="icon" href="logo4.png" type="image/png">
+
     <style>
-        * {
+        :root {
+            --primary-color: #003366;
+            --accent-color: #00A8E8;
+            --text-color: #333;
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            line-height: 1.6;
+            color: var(--text-color);
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            text-align: center;
-            padding: 40px;
-        }
-        h1 {
-            font-size: 3rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #666;
-        }
-        footer {
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
-            bottom: 0;
             width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 20px;
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { height: 60px; width: auto; display: block; }
+
+        .nav-links a {
+            margin-left: 20px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 16px;
-            font-size: 0.85rem;
-            color: #999;
-            background: #f5f5f5;
+            color: var(--white);
+            margin-top: 76px;
+        }
+
+        .hero-content { max-width: 800px; padding: 20px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.25rem; margin-bottom: 30px; opacity: 0.9; }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn:hover { background: #007bb5; }
+
+        section { padding: 80px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
+        .section-title .line { width: 60px; height: 4px; background: var(--accent-color); margin: 0 auto; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; }
+        .about-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        .bg-light { background: var(--light-bg); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card h3 { color: var(--primary-color); margin-bottom: 15px; }
+        .service-card p.main-desc { margin-bottom: 25px; font-size: 1rem; flex-grow: 1; }
+
+        .brochure-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-bg);
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e1e1e1;
+            width: 100%;
+            box-sizing: border-box;
+            align-self: center;
+        }
+        .brochure-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+            border-color: var(--accent-color);
+            background: var(--white);
+        }
+        .brochure-icon { width: 24px; height: 24px; margin-right: 12px; }
+        .brochure-text-group { text-align: left; line-height: 1.2; }
+        .brochure-main-text { font-size: 0.95rem; }
+        .brochure-sub { display: block; font-size: 0.75rem; color: #888; font-weight: normal; }
+
+        .founder-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        @media(min-width: 768px) { .founder-container { flex-direction: row; } }
+
+        .founder-img {
+            flex: 1;
+            min-height: 400px;
+            width: 100%;
+            background: url('founder.webp') top center/cover;
+        }
+        .founder-info { flex: 1.5; padding: 50px; }
+        .founder-info h3 { color: var(--primary-color); margin-bottom: 5px; font-size: 1.8rem;}
+        .founder-info h4 { color: var(--accent-color); margin-bottom: 20px; font-weight: normal;}
+        .founder-tags span {
+            display: inline-block;
+            background: var(--light-bg);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .founder-info p:first-of-type { margin-bottom: 20px; }
+        .founder-info p:last-of-type { font-style: italic; color: #666; margin-top: 20px; }
+
+        /* Contact Us */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-color);
+        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label {
+            display: block; margin-bottom: 8px; font-weight: 500;
+            color: var(--primary-color); font-size: 0.95rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px 15px; border: 1px solid #ddd;
+            border-radius: 5px; font-family: inherit; font-size: 1rem;
+            box-sizing: border-box; background-color: #fcfcfc;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-color); outline: none;
+            background-color: var(--white); box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.1);
+        }
+        .form-submit-btn { width: 100%; font-size: 1.1rem; margin-top: 10px; }
+
+        footer { background: var(--primary-color); color: var(--white); padding: 50px 20px; text-align: center; }
+        .footer-content p { opacity: 0.8; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .contact-container { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Claude Code 连接测试 -->
-    <div class="container">
-        <h1>Buirlake</h1>
-        <p>欢迎访问 buirlake.com</p>
-    </div>
-    <footer>14/F CHINA HONG KONG TOWER, 8 HENNESSY ROAD, WANCHAI, HONG KONG</footer>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.webp" alt="Buir Lake Laboratories" onerror="this.style.display='none'; this.parentElement.innerText='Buir Lake Laboratories'">
+            </div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#focus">Focus</a>
+                <a href="#founder">Leadership</a>
+                <a href="#contact">Contact</a>
+                <a href="https://www.biology.ac" target="_blank" class="btn" style="padding: 8px 20px; margin-left:20px;">Visit Journal</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 首屏 Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bridging Light and Life</h1>
+            <p>A Hong Kong-based research initiative dedicated to advancing ultrafast optics, biophotonics, and open science.</p>
+            <a href="#focus" class="btn">Explore Our Research</a>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>Who We Are</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Founded in Hong Kong, <strong>Buir Lake Laboratories</strong> sits at the dynamic intersection of scientific research and academic publishing. Unlike traditional publishers, we are born from the laboratory.</p>
+                <p>Our mission is twofold: to push the boundaries of optical imaging technologies and to build a more transparent, efficient, and accessible platform for scientific communication.</p>
+                <p>We believe that the future of biology lies in the precision of light. By integrating cutting-edge research in ultrafast optics with a rigorous open-access publishing model, we aim to accelerate discoveries that illuminate the mechanisms of life.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="High-Tech Optical Lab">
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心业务 -->
+    <section id="focus" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Core Focus Areas</h2>
+                <div class="line"></div>
+            </div>
+            <div class="services-grid">
+                <!-- 卡片 1 -->
+                <div class="service-card">
+                    <h3>Academic Publishing</h3>
+                    <p class="main-desc">We are the proud publisher of <strong>Optical Biology</strong> (hosted at <em>biology.ac</em>), a peer-reviewed open-access journal focused on Ultrafast Spectroscopy, Non-linear Optics, and AI-driven Analysis.</p>
+                    <a href="https://www.biology.ac" target="_blank" class="brochure-link">
+                        <svg class="brochure-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill: var(--accent-color);">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                        </svg>
+                        <div class="brochure-text-group">
+                            <div class="brochure-main-text">Visit Journal Platform</div>
+                            <span class="brochure-sub">Optical Biology (biology.ac)</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- 卡片 2 -->
+                <div class="service-card">
+                    <h3>Spectroscopic Microscopy</h3>
+                    <p class="main-desc">Pioneering advanced label-free imaging techniques, including Stimulated Raman Scattering (SRS) and Coherent Anti-Stokes Raman Scattering (CARS) microscopy, for high-speed, chemically specific biological visualization.</p>
+                </div>
+                <!-- 卡片 3 -->
+                <div class="service-card">
+                    <h3>Nonlinear Optics</h3>
+                    <p class="main-desc">
+                        Our latest product line includes high-performance <strong>Ti:Sapphire & Yb-doped OPAs</strong>, broadly tunable femtosecond sources, and precision components like low-dispersion mirrors and pulse-shaping etalons.
+                    </p>
+                    <a href="product202505.pdf" target="_blank" class="brochure-link">
+                        <svg class="brochure-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill: #e74c3c;">
+                            <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/>
+                        </svg>
+                        <div class="brochure-text-group">
+                            <div class="brochure-main-text">Product Brochure</div>
+                            <span class="brochure-sub">Download Catalog (PDF)</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 创始人 -->
+    <section id="founder" class="container">
+        <div class="section-title">
+            <h2>Leadership</h2>
+            <div class="line"></div>
+        </div>
+        <div class="founder-container">
+            <div class="founder-img"></div>
+
+            <div class="founder-info">
+                <h3>Francis Wai Shum</h3>
+                <h4>Managing Director</h4>
+                <div class="founder-tags">
+                    <span>Ultrafast Optics</span>
+                    <span>Biophotonics</span>
+                    <span>Open Science</span>
+                </div>
+                <p>"At Buir Lake Laboratories, we create the kind of academic platform I always wished for as a researcher—one that respects the science, values speed, and connects the global optical community."</p>
+                <p style="font-style: italic; color: #666; margin-top: 20px;">Background: Ph.D. from Tulane University (New Orleans, USA), with previous research experience at Michigan State University and the Chinese Academy of Sciences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us 版块 -->
+    <section id="contact" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="contact-container">
+                <!--
+                   最终修正：
+                   1. form name="contact_final" (强制 Netlify 重新识别)
+                   2. action="success.html" (使用相对路径，确保文件名大小写一致)
+                   3. 纯 HTML 提交，无 JS 干扰
+                -->
+                <form name="contact_final" method="POST" data-netlify="true" action="success.html">
+                    <input type="hidden" name="form-name" value="contact_final">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Full Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn form-submit-btn">Send Message</button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <h3>Buir Lake Laboratories</h3>
+            <p>14/F CHINA HONG KONG TOWER, 8 HENNESSY ROAD, WANCHAI, HONG KONG</p>
+            <p>Email: <a href="mailto:mail@buirlake.com">mail@buirlake.com</a></p>
+            <p>&copy; 2025 Buir Lake Laboratories. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
